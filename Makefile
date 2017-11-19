@@ -1,4 +1,4 @@
-obj-m += ofd.o
+obj-m += ofd.o memory.o
 
 KDIR = /lib/modules/$(shell uname -r)/build
 
