@@ -5,7 +5,7 @@
 #include <linux/fs.h> /* file_operations */
 #include <linux/slab.h> /* kmalloc() */
 #include <asm/uaccess.h> /* copy_from/to_user */
-
+#define BUFF_SIZE 10
 MODULE_LICENSE("Dual BSD/GPL");
 
 
@@ -74,7 +74,7 @@ static int  memory_init(void) {
   }
   /* Allocating memory for the buffer */
 
-  memory_buffer = kmalloc(1, GFP_KERNEL); 
+  memory_buffer = kmalloc(BUFF_SIZE, GFP_KERNEL); 
 
   if (!memory_buffer) { 
 
@@ -83,7 +83,7 @@ static int  memory_init(void) {
     goto fail; 
 
   } 
-  memset(memory_buffer, 0, 1);
+  memset(memory_buffer, 0, BUFF_SIZE);
   printk("<1>Inserting memory module\n"); 
   return 0;
 
@@ -117,21 +117,29 @@ int memory_release(struct inode *inode, struct file *filp){
 }
 
 ssize_t memory_read(struct file *filp, char *buf, size_t count, loff_t *f_pos){
-	/* Transfering data to user space */ 
-  copy_to_user(buf,memory_buffer,1);
-  /* Changing reading position as best suits */
-  if (*f_pos == 0) {
-    *f_pos+=1; 
-    return 1; 
-  } else { 
+	/* Transfering data to user space */   
+  if(*f_pos<BUFF_SIZE-1){
+    copy_to_user(buf,memory_buffer+*f_pos,1);
+    (*f_pos)+=1;
+  }  
+  if(count==1){
+    *(buf+*f_pos)=0;
+    *f_pos=0;
     return 0;
+  }
+  else{
+    return 1;
   }
 }
 
-ssize_t memory_write(struct file *filp, const char *buf, size_t count, loff_t *f_pos){
-	const char *tmp;
-  tmp=buf+count-1;
-  copy_from_user(memory_buffer,tmp,1);
-
+ssize_t memory_write(struct file *filp, const char *buf, size_t count, loff_t *f_pos){	  
+  if(*f_pos<BUFF_SIZE-1){
+    copy_from_user(memory_buffer+*f_pos,buf,1);
+    (*f_pos)+=1;          
+  }
+  if(count==1){
+    *(memory_buffer+*f_pos)=0;
+    *f_pos=0;
+  }    
   return 1;
 }
