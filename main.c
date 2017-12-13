@@ -2,14 +2,26 @@
 #include <unistd.h>
 #include <string.h>
 #include <stdlib.h>
-#define BUFF_SIZE 10
+#include "rsa.h"
+
 int main(int argc,char* argv[]) { 
 
   unsigned char dummy;
   char *write_str,*read_str;
 
   FILE * MEMORY;
+  rsa_params _rsa;
+  init(&_rsa);
 
+  char src[1000],des[1000]; 
+  if(argc>=2){    
+    strcpy(src,argv[1]);
+    ma_hoa2(_rsa,src,des);
+    puts(src);puts(des);
+    strcpy(src,des);
+    giai_ma2(_rsa,src,des);
+    puts(src);puts(des);
+  }
   if(argc<2){
     puts("Argument not found.");
     return -1;

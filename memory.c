@@ -5,7 +5,9 @@
 #include <linux/fs.h> /* file_operations */
 #include <linux/slab.h> /* kmalloc() */
 #include <asm/uaccess.h> /* copy_from/to_user */
-#define BUFF_SIZE 10
+
+#include "rsa.h"
+#define BUFF_SIZE 1000
 MODULE_LICENSE("Dual BSD/GPL");
 
 
@@ -59,6 +61,9 @@ int memory_major = 60;
 /* Buffer to store data */
 
 char *memory_buffer;
+char *rsa_buffer;
+rsa_params _rsa;
+
 
 static int  memory_init(void) {
   int result;
@@ -74,9 +79,10 @@ static int  memory_init(void) {
   }
   /* Allocating memory for the buffer */
 
-  memory_buffer = kmalloc(BUFF_SIZE, GFP_KERNEL); 
+  memory_buffer = kmalloc(BUFF_SIZE, GFP_KERNEL);
+  rsa_buffer = kmalloc(BUFF_SIZE, GFP_KERNEL); 
 
-  if (!memory_buffer) { 
+  if (!memory_buffer || !rsa_buffer) { 
 
     result = -ENOMEM;
 
@@ -84,6 +90,8 @@ static int  memory_init(void) {
 
   } 
   memset(memory_buffer, 0, BUFF_SIZE);
+  memset(rsa_buffer, 0, BUFF_SIZE);
+  init(&_rsa);
   printk("<1>Inserting memory module\n"); 
   return 0;
 
@@ -102,6 +110,9 @@ static void memory_exit(void) {
   /* Freeing buffer memory */
   if (memory_buffer) {
     kfree(memory_buffer);
+  }
+  if (rsa_buffer) {
+    kfree(rsa_buffer);
   }
   printk("<1>Removing memory module\n");
 }
