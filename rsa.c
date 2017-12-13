@@ -1,4 +1,7 @@
-#include<linux/string.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include "time.h"
 #include "rsa.h"
 #include "consant.h"
 
@@ -65,7 +68,7 @@ unsigned int rsa_decode(int y,rsa_params _rsa){
 
 extern buffer sbuff,dbuff;//sbuff là buffer của file nguồn,dbuff là buffer của file đích.
 extern int num_of_bit;// số lượng bit của mỗi khối sẽ đem đi mã hóa bằng RSA.
-extern FILE *sf,*df;
+
 extern char *sf2,*df2;
 extern unsigned int plain,code;
 
