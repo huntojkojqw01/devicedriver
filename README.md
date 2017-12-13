@@ -10,32 +10,30 @@ $ make
 
 1. **Cài đặt, xóa bỏ module**
 ```
-$ sudo insmod memory.ko
-$ sudo rmmod memory
+$ sudo insmod encoder.ko
+$ sudo rmmod encoder
+$ sudo insmod decoder.ko
+$ sudo rmmod decoder
 ```
 
 2. **Tạo file thiết bị**
 ```
-$ sudo mknod /dev/memory c 60 0
-$ sudo chmod 666 /dev/memory
-```
-	
-3. **Đọc ghi với file**
-```
-$ echo -n abcdef > /dev/memory
-$ cat /dev/memory
+$ sudo mknod /dev/encoder c 50 0
+$ sudo chmod 666 /dev/encoder
+$ sudo mknod /dev/decoder c 60 0
+$ sudo chmod 666 /dev/decoder
 ```
 
-4. **Xem log**
+3. **Xem log**
 ```
 $ dmesg
 ```
-5. **Xem danh sách các module đã cài**
+4. **Xem danh sách các module đã cài**
 ```
 $ lsmod | head -10
 
 ```
-6. **Xem major number của các device**
+5. **Xem major number của các device**
 ```
 $ cat /proc/devices
 ```
