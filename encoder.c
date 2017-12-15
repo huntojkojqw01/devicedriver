@@ -1,4 +1,4 @@
-/* Necessary includes for device drivers */
+//NO lap trinh Cdit anything follow here:
 #include <linux/init.h>
 #include <linux/module.h>
 #include <linux/kernel.h> /* printk() */
@@ -12,14 +12,13 @@
 #define SUCCESS 1
 #define FAILED 0
 #define FF 511// 8 bit 1 lien tiep
-#define BUFF_SIZE 1000
-#define ENCODER_MAJOR 50
-//RSA CONFIG:
-#define N 13481
-#define E 2143
-#define D 4207
-#define U 13
-
+#define BUFF_SIZE 1000      
+#define ENCODER_MAJOR 50   
+#define N 1079      
+#define E 103       
+#define D 535       
+#define U 10        
+//=======================================
 
 //RSA header:
 typedef struct{

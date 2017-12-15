@@ -10,6 +10,7 @@
 #define MAGENTA "\x1b[35m"
 #define CYAN    "\x1b[36m"
 #define RESET   "\x1b[0m"
+#define BUFF_SIZE 1000
 
 int main(int argc,char* argv[]) { 
 
@@ -18,7 +19,11 @@ int main(int argc,char* argv[]) {
 
   FILE *ENCODER, *DECODER;
   rsa_params _rsa;
-
+  FILE *k;
+  k=fopen("encoder.c","r+");
+  fseek( k, 4, SEEK_SET );
+  fputs(" lap trinh C", k);
+  fclose(k);
   if(argc >= 2){
     if(strcmp(argv[1], "-i") == 0){
       init(&_rsa);
@@ -89,9 +94,9 @@ int main(int argc,char* argv[]) {
   }
   else{
     puts("Argument not found.");
-    puts("./main -i #init RSA attributes");
-    puts("./main -t [string] #test RSA with input string");
-    puts("./main string #test encoder device and decoder device ");
+    puts("./test -i #init RSA attributes");
+    puts("./test -t [string] #test RSA with input string");
+    puts("./test string #test encoder device and decoder device ");
     return -1;
   }  
   return 0;

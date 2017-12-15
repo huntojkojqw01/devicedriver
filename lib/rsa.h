@@ -9,7 +9,6 @@ Tham khảo sách "Giáo trình cơ sở an toàn thông tin" thầy Nguyễn Kh
 #define SUCCESS 1
 #define FAILED 0
 #define FF 511// 8 bit 1 lien tiep
-#define BUFF_SIZE 1000
 
 /*
 Việc mã hóa RSA thực hiện trên khối bit chứ không phải theo byte nên ta phải xây dựng 2 bộ đệm tương ứng cho 2 thao tác:

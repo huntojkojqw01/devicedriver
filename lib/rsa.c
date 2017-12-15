@@ -5,6 +5,7 @@
 #include "rsa.h"
 #include "consant.h"
 
+
 unsigned int luy_thua_cao(unsigned int x,unsigned int y,unsigned int mod){// tính x mũ y modul mod
 	unsigned int a,b,tmp;
 	if(y==0) return 1%mod;
