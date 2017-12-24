@@ -6,17 +6,7 @@ all:
 	gcc -o lib/config lib/config.c lib/rsa.c
 	./lib/config
 	$(MAKE) -C $(KDIR) SUBDIRS=$(PWD) modules
-	gcc -o test lib/main.c lib/rsa.c
-	rmmod encoder>/dev/null
-	rmmod decoder>/dev/null
-	insmod encoder.ko>/dev/null
-	insmod decoder.ko>/dev/null
-	rm /dev/encoder
-	rm /dev/decoder
-	mknod /dev/encoder c 50 0
-	mknod /dev/decoder c 60 0
-	chmod 666 /dev/encoder
-	chmod 666 /dev/decoder
+	gcc -o test lib/main.c lib/rsa.c	
 install:
 	insmod encoder.ko>/dev/null
 	insmod decoder.ko>/dev/null

@@ -1,4 +1,4 @@
-//NO lap trinh Cdit anything follow here:
+//NOTE: Do not edit anything follow here:
 #include <linux/init.h>
 #include <linux/module.h>
 #include <linux/kernel.h> /* printk() */
