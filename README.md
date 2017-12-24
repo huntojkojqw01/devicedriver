@@ -1,5 +1,5 @@
 # README
-RSA device by : Hero Nguyen
+RSA encode, decode device. 
 
 #### Hướng dẫn sử dụng:
 0. **Biên dịch**

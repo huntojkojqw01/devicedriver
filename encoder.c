@@ -14,10 +14,10 @@
 #define FF 511// 8 bit 1 lien tiep
 #define BUFF_SIZE 1000      
 #define ENCODER_MAJOR 50   
-#define N 1079      
-#define E 103       
-#define D 535       
-#define U 10        
+#define N 20711     
+#define E 3691      
+#define D 11659     
+#define U 14        
 //=======================================
 
 //RSA header:

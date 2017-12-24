@@ -18,12 +18,7 @@ int main(int argc,char* argv[]) {
   char *write_str, *read_str, src[1000], des[1000];;
 
   FILE *ENCODER, *DECODER;
-  rsa_params _rsa;
-  FILE *k;
-  k=fopen("encoder.c","r+");
-  fseek( k, 4, SEEK_SET );
-  fputs(" lap trinh C", k);
-  fclose(k);
+  rsa_params _rsa;  
   if(argc >= 2){
     if(strcmp(argv[1], "-i") == 0){
       init(&_rsa);
